@@ -7,6 +7,11 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'Firt Hello World from nestjs';
+  }
+
+  @Get('new')
+  newEndpoint() {
+    return 'New Endpoint';
   }
 }
