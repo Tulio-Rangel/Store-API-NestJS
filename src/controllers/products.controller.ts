@@ -3,7 +3,7 @@ import { Controller, Get, Param, Query } from '@nestjs/common';
 @Controller('products')
 export class ProductsController {
   //recibiendo parámetros
-  @Get('products/:productId')
+  @Get(':productId')
   getProducts(@Param() params: any) {
     return `product ${params.productId}`;
   }
@@ -14,7 +14,7 @@ export class ProductsController {
   //   return `product ${productId}`;
   // }
   //Query params
-  @Get('products')
+  @Get()
   getProducts2(
     @Query('limit') limit: number,
     @Query('brand') brand: string,
