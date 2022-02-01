@@ -1,11 +1,13 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, Post } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
   //recibiendo parámetros
   @Get(':productId')
   getProducts(@Param() params: any) {
-    return `product ${params.productId}`;
+    return {
+      message: `product ${params.productId}`,
+    };
   }
 
   // otra forma de recibir parametros
@@ -20,6 +22,15 @@ export class ProductsController {
     @Query('brand') brand: string,
     @Query('offset') offset = 0, //así se pasa un valor por defecto
   ) {
-    return `product: limit => ${limit} offset => ${offset} brand => ${brand}`;
+    return {
+      message: `product: limit => ${limit} offset => ${offset} brand => ${brand}`,
+    };
+  }
+
+  @Post()
+  create() {
+    return {
+      message: `action create`,
+    };
   }
 }

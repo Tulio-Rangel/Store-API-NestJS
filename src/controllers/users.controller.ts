@@ -3,7 +3,9 @@ import { Controller, Get } from '@nestjs/common';
 @Controller('users')
 export class UsersController {
   @Get()
-  getUser(): string {
-    return `Hello from users`;
+  getUser() {
+    return {
+      message: `Hello from users`,
+    };
   }
 }

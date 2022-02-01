@@ -5,6 +5,8 @@ export class CategoriesController {
   //ruta con varios ids
   @Get(':id/products/:productId')
   getCategory(@Param('id') id: string, @Param('productId') productId: string) {
-    return `product ${productId} and ${id}`;
+    return {
+      message: `product ${productId} and ${id}`,
+    };
   }
 }
