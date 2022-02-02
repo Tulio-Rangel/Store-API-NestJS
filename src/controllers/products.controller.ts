@@ -1,4 +1,5 @@
-import { Controller, Get, Param, Query, Post } from '@nestjs/common';
+import { Controller, Get, Param, Query, Post, Body } from '@nestjs/common';
+import { create } from 'domain';
 
 @Controller('products')
 export class ProductsController {
@@ -27,10 +28,36 @@ export class ProductsController {
     };
   }
 
+  // Esta es la forma básica de crear un post.
   @Post()
-  create() {
+  create(@Body() payload: any) {
     return {
       message: `action create`,
+      payload,
+      body: {
+        limit: 10,
+        offset: 20,
+        brand: '',
+      },
     };
   }
+
+  //Creando un Post usando una interface para no usar any
+  // interface Iproduct {
+  //   name: string;
+  //   price: number;
+  // };
+
+  // @Post()
+  // create(@Body() payload: Iproduct) {
+  //   return {
+  //     message: `Product list`,
+  //     payload,
+  //     body:{
+  //       limit: 30,
+  //       offset: 20,
+  //       brand: '',
+  //     },
+  //   };
+  // }
 }
