@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 
 @Controller('customers')
 export class CustomersController {
@@ -6,6 +6,19 @@ export class CustomersController {
   getCustomer() {
     return {
       mesaage: `Hello from customers`,
+    };
+  }
+
+  @Post()
+  create(@Body() payload: any) {
+    return {
+      message: `action create customer`,
+      payload,
+      body: {
+        limit: 10,
+        offset: 20,
+        brand: '',
+      },
     };
   }
 }
