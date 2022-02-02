@@ -32,7 +32,7 @@ export class ProductsController {
   @Post()
   create(@Body() payload: any) {
     return {
-      message: `action create`,
+      message: `action create product`,
       payload,
       body: {
         limit: 10,
