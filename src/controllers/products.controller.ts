@@ -9,17 +9,23 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Res,
 } from '@nestjs/common';
+
+import { Response } from 'express';
 
 @Controller('products')
 export class ProductsController {
   //recibiendo parámetros
   @Get(':productId')
-  @HttpCode(HttpStatus.ACCEPTED)
-  getOneProduct(@Param('productId') productId: any) {
-    return {
-      message: `product ${productId}`,
-    };
+  //@HttpCode(HttpStatus.ACCEPTED)
+  getOneProduct(@Res() response: Response, @Param('productId') productId: any) {
+    response.status(200).send({
+      message: `Este es un response de express ${productId}`,
+    });
+    // return {
+    //   message: `product ${productId}`,
+    // };
   }
 
   //Query params
