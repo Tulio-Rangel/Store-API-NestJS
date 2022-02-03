@@ -1,4 +1,13 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Body,
+  Put,
+  Delete,
+  Param,
+} from '@nestjs/common';
 
 @Controller('categories')
 export class CategoriesController {
@@ -20,6 +29,21 @@ export class CategoriesController {
         offset: 20,
         brand: '',
       },
+    };
+  }
+
+  @Put(':id')
+  update(@Param('id') id: number, @Body() payload: any) {
+    return {
+      id,
+      payload,
+    };
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: number) {
+    return {
+      id,
     };
   }
 }
