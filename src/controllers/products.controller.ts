@@ -7,23 +7,21 @@ import {
   Body,
   Put,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
   //recibiendo parámetros
   @Get(':productId')
-  getProducts(@Param() params: any) {
+  @HttpCode(HttpStatus.ACCEPTED)
+  getOneProduct(@Param('productId') productId: any) {
     return {
-      message: `product ${params.productId}`,
+      message: `product ${productId}`,
     };
   }
 
-  // otra forma de recibir parametros
-  // @Get('products/:productId')
-  // getProducts2(@Param(productId) productId: string) {
-  //   return `product ${productId}`;
-  // }
   //Query params
   @Get()
   getProducts2(

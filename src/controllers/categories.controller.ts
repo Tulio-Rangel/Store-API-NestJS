@@ -6,7 +6,6 @@ import {
   Body,
   Put,
   Delete,
-  Param,
 } from '@nestjs/common';
 
 @Controller('categories')
