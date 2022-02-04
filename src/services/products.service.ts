@@ -33,14 +33,6 @@ export class ProductsService {
     return newProduct;
   }
 
-  update(payload: any, id: number) {
-    const getProductById = this.products.find((item) => item.id === id);
-    this.products[getProductById] = {
-      id: id,
-      ...payload,
-    };
-  }
-
   update1(payload: any, id: number) {
     const product = this.findOne(id);
 
@@ -65,5 +57,13 @@ export class ProductsService {
       Message: 'Product updated',
       Updated: this.products[found],
     };
+  }
+
+  delete(id: number) {
+    const product = this.findOne(id);
+    const productIndex = this.products.indexOf(product);
+    this.products.splice(productIndex, 1);
+
+    return product;
   }
 }
