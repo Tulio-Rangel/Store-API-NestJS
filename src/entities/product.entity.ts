@@ -3,6 +3,6 @@ export class Product {
   name: string;
   desciption: string;
   price: number;
-  stock: number;
-  image: string;
+  stock?: number;
+  image?: string;
 }

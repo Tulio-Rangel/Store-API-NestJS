@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 export class ProductsService {
   private products: Product[] = [
     {
-      id: nanoid(),
+      id: nanoid(4),
       name: 'Product 1',
       desciption: 'Here goes the descriotion',
       price: 12000,
@@ -25,37 +25,25 @@ export class ProductsService {
 
   create(payload: any) {
     const newProduct = {
-      id: nanoid(),
+      id: nanoid(4),
       ...payload,
     };
     this.products.push(newProduct);
     return newProduct;
   }
 
-  update1(payload: any, id: string) {
+  update(id: string, payload: any) {
     const product = this.findOne(id);
 
-    for (let key in payload) {
-      if (key !== 'id') {
-        product[key] = payload[key];
-      }
+    if (product) {
+      const index = this.products.findIndex((item) => item.id === id);
+      this.products[index] = {
+        ...product,
+        ...payload,
+      };
+      return this.products[index];
     }
-
-    return product;
-  }
-
-  update2(id: string, payload: any) {
-    const found = this.products.findIndex((item) => item.id === id);
-
-    if (found === -1) throw new Error('Product not found');
-    this.products[found] = {
-      id: id,
-      ...payload,
-    };
-    return {
-      Message: 'Product updated',
-      Updated: this.products[found],
-    };
+    return 'Prueba nuevamente';
   }
 
   delete(id: string) {
