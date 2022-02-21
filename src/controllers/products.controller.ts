@@ -10,6 +10,7 @@ import {
   HttpCode,
   HttpStatus,
   Res,
+  ParseIntPipe,
 } from '@nestjs/common';
 
 import { Response } from 'express';
@@ -23,7 +24,7 @@ export class ProductsController {
   //@HttpCode(HttpStatus.ACCEPTED)
   getOneProduct(
     // @Res() response: Response,
-    @Param('productId') productId: string,
+    @Param('productId' /*ParseIntPipe*/) productId: string, /*El ParseIntPipe sirve para validar que el id que estamos recibiendo es un numero, por lo que podemos colocar que el atributo de nuestro productID es number, pero yo no lo tengo así en mi service*/
   ) {
     // response.status(200).send({
     //   message: `Este es un response de express ${productId}`,
