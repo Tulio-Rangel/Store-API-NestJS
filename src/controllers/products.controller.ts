@@ -15,6 +15,7 @@ import {
 
 import { Response } from 'express';
 import { ProductsService } from 'src/services/products.service';
+import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -50,7 +51,7 @@ export class ProductsController {
 
   // Esta es la forma básica de crear un post.
   @Post()
-  create(@Body() payload: any) {
+  create(@Body() payload: CreateProductDto) {
     // return {
     //   message: `action create product`,
     //   payload,
@@ -83,7 +84,7 @@ export class ProductsController {
   // }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() payload: any) {
+  update(@Param('id') id: string, @Body() payload: UpdateProductDto) {
     // return {
     //   id,
     //   payload,

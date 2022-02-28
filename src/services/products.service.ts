@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Product } from 'src/entities/product.entity';
 import { nanoid } from 'nanoid';
+import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dto';
+
 
 @Injectable()
 export class ProductsService {
@@ -8,7 +10,7 @@ export class ProductsService {
     {
       id: nanoid(4),
       name: 'Product 1',
-      desciption: 'Here goes the descriotion',
+      description: 'Here goes the descriotion',
       price: 12000,
       stock: 1,
       image: 'googleImageHere',
@@ -27,7 +29,7 @@ export class ProductsService {
     return product;
   }
 
-  create(payload: any) {
+  create(payload: CreateProductDto) {
     const newProduct = {
       id: nanoid(4),
       ...payload,
@@ -36,7 +38,7 @@ export class ProductsService {
     return newProduct;
   }
 
-  update(id: string, payload: any) {
+  update(id: string, payload: UpdateProductDto) {
     const product = this.findOne(id);
 
     if (product) {
