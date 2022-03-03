@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsUrl, IsNotEmpty } from "class-validator";
+import { IsString, IsNumber, IsUrl, IsNotEmpty, IsPositive } from "class-validator";
 
 export class CreateProductDto {
   @IsString()
@@ -15,6 +15,7 @@ export class CreateProductDto {
 
   @IsNumber()
   @IsNotEmpty()
+  @IsPositive()
   readonly stock: number;
 
   @IsUrl()
@@ -31,9 +32,11 @@ export class UpdateProductDto {
   readonly description?: string;
 
   @IsNumber()
+  @IsPositive()
   readonly price?: number;
 
   @IsNumber()
+  @IsPositive()
   readonly stock?: number;
 
   @IsUrl()
