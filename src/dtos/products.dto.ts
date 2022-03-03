@@ -6,6 +6,8 @@ import {
   IsPositive,
 } from 'class-validator';
 
+import { PartialType } from '@nestjs/mapped-types';
+
 export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
@@ -31,7 +33,7 @@ export class CreateProductDto {
 }
 
 //El signo "?" básicamente dice que el atributo es opcional
-export class UpdateProductDto {
+/*export class UpdateProductDto {
   @IsString()
   readonly name?: string;
 
@@ -48,4 +50,7 @@ export class UpdateProductDto {
 
   @IsUrl()
   readonly image?: string;
-}
+}*/
+
+//Esto es una forma más limpia de hacer las validaciones del update ya que "es lo mismo" que el create
+export class UpdateProductDto extends PartialType(CreateProductDto) {}
